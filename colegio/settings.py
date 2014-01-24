@@ -16,6 +16,9 @@ from EasyBoard.settings import *
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+ADMINS = (
+    ('Mauricio Aizaga', 'maizaga@daiech.com'),
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -24,11 +27,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '$a-g%gkv7_31ql*^71$_)(*kmc5@=cln$#+ebs^kn*_s+ne6_b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+try:
+    from .local_settings import DEBUG
+except Exception:
+    DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*.easyboard.co", "*.easyboard.com.co"]
 
 
 # Application definition
@@ -46,20 +52,27 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'colegio1.urls'
+ROOT_URLCONF = 'colegio.urls'
 
-WSGI_APPLICATION = 'colegio1.wsgi.application'
+WSGI_APPLICATION = 'colegio.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'colegio1.sqlite3'),
+try:
+    from .local_settings import DATABASES
+except Exception, e:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '',
+        }
     }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -74,6 +87,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+try:
+    from .local_settings import EMAIL_HOST_USER
+except:
+    EMAIL_HOST_USER = ""
+try:
+    from .local_settings import EMAIL_HOST_PASSWORD
+except:
+    EMAIL_HOST_PASSWORD = ""
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
