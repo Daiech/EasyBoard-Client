@@ -8,6 +8,6 @@ urlpatterns = patterns('',
     url(r'', include('EasyBoard.urls')),
     
     url(r'^carnetizacion/', include('EasyBoard.extra_apps.school_card.urls')),
-    #url(r'^app4/', include('apps.app4.urls')),
+    url(r'^app4/', include('apps.app4.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

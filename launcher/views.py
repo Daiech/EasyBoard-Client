@@ -10,9 +10,12 @@ def launcher(request):
     school_card = {"url": reverse("home_school_card"), "name": _(u"Carnetización"), "class": "school-card-icon"}
     apps1 = [
         school_card,
-        # {"url": reverse("home_app4"), "name": "App unica", "class": "app-unica-icon"},
+        {"url": reverse("home_app4"), "name": "App unica", "class": "app-unica-icon"},
     ]
-    apps2 = [{"url": "/app4", "name": "App4", "class": "otro"}]
+    apps2 = [
+        school_card,
+        {"url": "/app4", "name": "App4", "class": "otro"}
+    ]
     ctx = [
         {"user_type": 1, "apps": apps1},
         {"user_type": 2, "apps": apps2},

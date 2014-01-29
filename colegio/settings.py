@@ -18,6 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 ADMINS = (
     ('Mauricio Aizaga', 'maizaga@daiech.com'),
+    ('Soporte DEL', 'soporte@del.com.co'),
 )
 
 # Quick-start development settings - unsuitable for production
@@ -66,11 +67,7 @@ except Exception, e:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'db.sqlite',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': '',
-            'PORT': '',
+            'NAME': os.path.join(BASE_DIR, 'colegio.sqlite3'),
         }
     }
 
